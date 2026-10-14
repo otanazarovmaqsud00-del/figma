@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EduLife — Zamonaviy buxgalteriya hisobi kursi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#1E6BDD;
+  --blue-dark:#1557B5;
+  --blue-light:#E8F0FC;
+  --ink:#273747;
+  --muted:#6B7B8C;
+  --mint:#E5F2F1;
+  --soft:#F4F7FA;
+  --line:#EEEEEE;
+  --dark:#002A25;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Source Sans Pro',-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  color:var(--ink);background:#fff;font-size:17px;line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{display:block}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer}
+.page{width:100%;max-width:1440px;margin:0 auto;padding-top:111px;background:#fff;overflow:hidden}
+.container{width:1240px;max-width:calc(100% - 48px);margin:0 auto}
+
+/* ---------- typography ---------- */
+h1,h2,h3{font-weight:600}
+.h1{font-size:39px;line-height:1.13;letter-spacing:.03em;color:#000}
+.h2{font-size:31px;line-height:1.25;letter-spacing:.05em;color:#000}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:15px 26px;border:1px solid var(--blue);border-radius:10px;
+  background:#fff;color:var(--blue);font-size:16px;font-weight:600;
+  letter-spacing:.03em;text-transform:uppercase;transition:.2s;white-space:nowrap;
+}
+.btn:hover{background:var(--blue);color:#fff}
+.btn--solid{background:var(--blue);color:#fff}
+.btn--solid:hover{background:var(--blue-dark);border-color:var(--blue-dark)}
+.btn--white{background:#fff;border-color:#fff;color:var(--blue)}
+.btn--white:hover{background:var(--blue-light)}
+
+/* ---------- header ---------- */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:50;background:#fff;border-bottom:1px solid #0501EB}
+.site-header .inner{height:110px;display:flex;align-items:center;gap:30px}
+.logo{display:flex;align-items:center;gap:10px;font-size:27px;font-weight:700;color:var(--blue);letter-spacing:-.01em}
+.nav{display:flex;gap:28px;margin-left:20px}
+.nav a{font-size:16px;color:var(--ink);padding:6px 0}
+.nav a:hover{color:var(--blue)}
+.header-right{margin-left:auto;display:flex;align-items:center;gap:24px}
+.phone{display:flex;align-items:center;gap:9px;font-size:17px;font-weight:600;color:#000;white-space:nowrap}
+.lang{display:flex;align-items:center;gap:5px;font-size:19px;color:#000}
+.header-right .btn{padding:14px 22px}
+
+/* ---------- hero ---------- */
+.hero{margin-top:25px;display:grid;grid-template-columns:1fr 462px;column-gap:67px;align-items:start}
+.hero-grid{display:contents}
+.hero-grid>div{grid-column:1}
+.breadcrumb{grid-column:1/-1;display:flex;align-items:center;gap:8px;height:24px;margin-bottom:25px;font-size:16px;color:var(--muted)}
+.breadcrumb a:hover{color:var(--blue)}
+.breadcrumb .current{color:var(--blue)}
+.hero h1{max-width:713px}
+.hero p.lead{margin-top:20px;max-width:713px;font-size:17px;color:var(--ink)}
+.promo{
+  grid-column:2;grid-row:2 / span 2;align-self:start;
+  margin-top:33px;height:482px;border-radius:24px;padding:36px;overflow:hidden;
+  background:linear-gradient(155deg,#3C86E8 0%,#1E6BDD 50%,#124C9E 100%);
+  color:#fff;display:flex;flex-direction:column;position:relative;
+}
+.promo::before,.promo::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.10)}
+.promo::before{width:320px;height:320px;right:-110px;top:-90px}
+.promo::after{width:220px;height:220px;left:-90px;bottom:-70px;background:rgba(255,255,255,.07)}
+.promo-badge{
+  position:relative;z-index:1;align-self:flex-start;max-width:330px;
+  background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.4);
+  border-radius:100px;padding:11px 20px;font-size:15px;line-height:1.35;
+}
+.promo-body{position:relative;z-index:1;margin-top:auto}
+.promo-duration{font-size:44px;font-weight:700;letter-spacing:.01em}
+.promo-price{font-size:34px;font-weight:700;margin-top:4px}
+.promo-note{margin-top:10px;font-size:20px;opacity:.92}
+
+/* ---------- section head with arrows ---------- */
+.sec-head{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.arrows{display:flex;gap:12px}
+.arrow{width:48px;height:48px;border-radius:14px;border:1px solid var(--line);background:#fff;
+  display:grid;place-items:center;color:var(--blue);transition:.2s}
+.arrow:hover{border-color:var(--blue);background:var(--blue-light)}
+
+/* ---------- checklist ---------- */
+.learn{grid-column:1;margin-top:64px}
+.checklist{margin-top:8px;display:grid;gap:16px}
+.checklist li{list-style:none;display:flex;align-items:flex-start;gap:15px;font-size:18px;line-height:1.34;color:var(--ink)}
+.checklist svg{flex:0 0 24px;margin-top:2px;color:var(--blue)}
+
+/* ---------- info chips ---------- */
+.chips{display:flex;flex-wrap:wrap;gap:60px;margin-top:25px}
+.chip small{display:block;font-size:15px;color:var(--muted);margin-bottom:2px}
+.chip b{font-size:20px;font-weight:400;color:var(--blue);line-height:1.2}
+
+/* ---------- features (Kursda sizni nima kutmoqda) ---------- */
+.expect{margin-top:50px}
+.features{margin-top:30px;display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+.feature{padding:6px 4px}
+.feature .ill{width:100%;height:190px}
+.feature h3{margin:16px 0 8px;font-size:20px;color:#000}
+.feature p{font-size:16px;color:var(--ink)}
+
+/* ---------- audience cards ---------- */
+.audience{margin-top:50px}
+.cards3{margin-top:30px;display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.aud-card{background:var(--mint);border-radius:20px;padding:34px 32px}
+.aud-card h3{font-size:18px;line-height:1.35;margin-bottom:14px;color:#000}
+.aud-card p{font-size:17px;color:var(--ink)}
+
+/* ---------- result box (Natija) ---------- */
+.result-box{
+  margin-top:50px;border:1px solid var(--blue);border-radius:22px;padding:40px;
+  display:grid;grid-template-columns:1fr 520px;gap:44px;align-items:center;
+}
+.result-left h2{font-size:31px;line-height:1.25;letter-spacing:.05em}
+.result-left h3{margin:22px 0 16px;font-size:39px;line-height:1.13;letter-spacing:.05em;color:#000;max-width:520px}
+.result-left p{font-size:17px;color:var(--ink);max-width:560px}
+.result-btns{margin-top:28px;display:flex;flex-wrap:wrap;gap:16px}
+.gallery{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,132px);gap:14px}
+.gallery .ph{border-radius:14px;position:relative;overflow:hidden}
+.gallery .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,107,221,0) 40%,rgba(18,76,158,.45))}
+.g1{background:linear-gradient(140deg,#9CC3F2,#5B93DE);grid-row:span 2}
+.g2{background:linear-gradient(140deg,#BFD8F7,#7FA9E4)}
+.g3{background:linear-gradient(140deg,#8FB7EE,#4E88D8)}
+.g4{background:linear-gradient(140deg,#D3E3F9,#8DB3E8)}
+.g5{background:linear-gradient(140deg,#6FA3E6,#3A76C9);grid-row:span 2}
+
+/* ---------- certificate ---------- */
+.certificate{margin-top:80px;display:grid;grid-template-columns:607px 1fr;gap:25px;align-items:center}
+.cert{
+  height:391px;border:1px solid var(--line);border-radius:20px;padding:26px;background:#fff;
+  box-shadow:0 4px 18px rgba(0,0,0,.10);position:relative;overflow:hidden;
+}
+.cert-inner{height:100%;border:2px solid var(--blue-light);border-radius:12px;padding:24px 26px;display:flex;flex-direction:column}
+.cert-top{display:flex;align-items:center;justify-content:space-between}
+.cert-brand{display:flex;align-items:center;gap:8px;color:var(--blue);font-weight:700;font-size:20px}
+.cert-top small{font-size:12px;letter-spacing:.18em;color:var(--muted)}
+.cert-title{margin-top:26px;font-size:34px;font-weight:700;letter-spacing:.22em;color:var(--blue)}
+.cert-sub{margin-top:8px;font-size:13px;color:var(--muted);max-width:330px}
+.cert-name{margin-top:auto;border-bottom:1.5px solid var(--line);padding-bottom:8px;font-size:22px;font-weight:600;color:var(--ink)}
+.cert-foot{margin-top:14px;display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--muted)}
+.cert-seal{position:absolute;right:34px;bottom:30px;width:78px;height:78px;border-radius:50%;
+  border:2px dashed var(--blue);color:var(--blue);display:grid;place-items:center;font-size:11px;font-weight:700;
+  text-align:center;letter-spacing:.08em;transform:rotate(-8deg);background:rgba(232,240,252,.6)}
+.cert-text h3{font-size:25px;line-height:1.25;color:var(--ink);max-width:607px}
+.cert-text .note{margin-top:18px;font-size:16px;line-height:1.5;color:var(--muted);font-style:italic;max-width:470px}
+
+/* ---------- testimonials ---------- */
+.feedback{margin-top:58px}
+.tcards{margin-top:55px;display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.t-card{background:var(--soft);border-radius:20px;padding:28px}
+.t-avatar{width:72px;height:72px;border-radius:50%;background:linear-gradient(140deg,#9CC3F2,#4E88D8);
+  display:grid;place-items:center;color:#fff;font-weight:700;font-size:22px}
+.stars{display:flex;gap:3px;color:var(--blue);margin:16px 0 10px}
+.t-card p{font-size:17px;color:var(--ink)}
+
+/* ---------- support cards ---------- */
+.support{margin-top:58px}
+.scards{margin-top:25px;display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+.s-card{background:var(--soft);border-radius:20px;padding:24px}
+.s-top{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.s-top .ico{width:44px;height:44px;border-radius:12px;background:var(--blue-light);display:grid;place-items:center;color:var(--blue);flex:0 0 44px}
+.s-top h3{font-size:25px;font-weight:600;color:var(--ink);line-height:1.1}
+.s-card p{font-size:16px;color:var(--ink)}
+
+/* ---------- video box ---------- */
+.video-box{margin-top:70px;border:1px solid var(--blue);border-radius:22px;overflow:hidden;
+  display:grid;grid-template-columns:1fr 590px;min-height:332px}
+.video-text{padding:46px 40px 46px 46px}
+.video-text h2{font-size:36px;line-height:1.1;color:var(--ink);max-width:490px}
+.video-text p{margin:18px 0 26px;font-size:17px;color:var(--ink);max-width:470px}
+.yt{background:#0f0f0f;position:relative;display:flex;flex-direction:column;min-height:332px}
+.yt-thumb{flex:1;background:
+   radial-gradient(circle at 30% 30%,rgba(60,134,232,.55),transparent 55%),
+   linear-gradient(140deg,#20304a,#0f1826 70%);position:relative}
+.yt-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:74px;height:52px;border-radius:14px;background:#ff0033;border:none;display:grid;place-items:center;color:#fff}
+.yt-actions{position:absolute;top:14px;right:14px;display:flex;flex-direction:column;gap:10px}
+.yt-actions span{width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.55);display:grid;place-items:center;color:#fff;font-size:12px}
+.yt-bar{background:#0f0f0f;padding:12px 16px;display:flex;gap:12px;align-items:center}
+.yt-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(140deg,#4E88D8,#9CC3F2);flex:0 0 36px}
+.yt-lines{flex:1;display:grid;gap:7px}
+.yt-lines span{height:9px;border-radius:5px;background:rgba(255,255,255,.85)}
+.yt-lines span:last-child{width:55%;background:rgba(255,255,255,.45)}
+
+/* ---------- price band ---------- */
+.price{margin-top:80px;background:var(--blue);border-top:1px solid var(--blue);border-bottom:1px solid var(--blue);padding:22px 0 36px}
+.price .h2{color:#fff}
+.price-head{text-align:center}
+.price-label{margin:14px 0 24px;text-align:center;color:#fff;opacity:.85;font-size:20px}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.p-card{background:#fff;border-radius:16px;min-height:124px;padding:22px 26px;display:flex;flex-direction:column;justify-content:center;gap:6px}
+.p-card .pill{align-self:flex-start;background:var(--blue-light);color:var(--blue);border-radius:8px;padding:3px 10px;font-size:14px;font-weight:600}
+.p-card .big{font-size:28px;font-weight:700;color:var(--blue)}
+.p-card .total{font-size:16px;font-weight:600;color:var(--ink)}
+.p-card.opt{flex-direction:row;align-items:center;gap:14px;font-size:17px;font-weight:600;color:var(--blue);transition:.2s}
+.p-card.opt:hover{background:var(--blue-light)}
+.p-card.opt .tick{width:32px;height:32px;border-radius:50%;background:var(--blue-light);color:var(--blue);display:grid;place-items:center;flex:0 0 32px}
+
+/* ---------- footer ---------- */
+.foot{margin-top:80px;padding-bottom:30px}
+.foot-grid{display:grid;grid-template-columns:1.35fr 1fr 1fr 1fr;gap:30px}
+.foot-logo{display:flex;align-items:center;gap:10px;font-size:26px;font-weight:700;color:var(--blue)}
+.socials{display:flex;gap:14px;margin-top:20px}
+.social{width:44px;height:44px;border-radius:50%;background:var(--blue-light);color:var(--blue);
+  display:grid;place-items:center;transition:.2s}
+.social:hover{background:var(--blue);color:#fff}
+.foot h4{font-size:25px;font-weight:400;color:var(--dark);margin-bottom:16px}
+.foot ul{list-style:none;display:grid;gap:11px}
+.foot a{font-size:17px;color:var(--ink)}
+.foot a:hover{color:var(--blue)}
+.contact b{display:block;font-size:17px;font-weight:600;color:var(--ink)}
+.contact small{display:block;margin-top:4px;font-size:15px;color:var(--muted)}
+.contact+.contact{margin-top:20px}
+.foot-bottom{margin-top:30px;padding-top:20px;border-top:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:15px;color:var(--muted)}
+
+/* ---------- responsive ---------- */
+@media (max-width:1280px){
+  .hero-grid{grid-template-columns:1fr 400px;gap:40px}
+  .result-box{grid-template-columns:1fr 420px;gap:30px}
+  .video-box{grid-template-columns:1fr 480px}
+}
+@media (max-width:1080px){
+  .nav,.header-right .phone{display:none}
+  .hero-grid{grid-template-columns:1fr}
+  .promo{height:auto}
+  .features,.scards{grid-template-columns:repeat(2,1fr)}
+  .cards3,.tcards,.price-grid{grid-template-columns:1fr 1fr}
+  .result-box{grid-template-columns:1fr}
+  .certificate{grid-template-columns:1fr}
+  .cert{max-width:607px}
+  .video-box{grid-template-columns:1fr}
+  .video-box .yt{min-height:300px}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:680px){
+  body{font-size:16px}
+  .h1{font-size:30px}
+  .h2{font-size:24px}
+  .features,.cards3,.tcards,.scards,.price-grid,.foot-grid{grid-template-columns:1fr}
+  .checklist li{font-size:16px}
+  .result-box{padding:26px}
+  .result-left h3{font-size:28px}
+  .chips{gap:28px}
+  .video-text{padding:30px 26px}
+  .video-text h2{font-size:28px}
+}
+</style>
+</head>
+<body>
+
+<!-- ======================= HEADER ======================= -->
+<header class="site-header">
+  <div class="container inner">
+    <a href="#" class="logo">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>
+      EduLife
+    </a>
+    <nav class="nav">
+      <a href="#">Bosh sahifa</a>
+      <a href="#">O'quv dasturlar</a>
+      <a href="#">Ish topish</a>
+      <a href="#">Tadbirlar</a>
+    </nav>
+    <div class="header-right">
+      <span class="phone">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+        +998-00-000-00-00
+      </span>
+      <span class="lang">RU
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </span>
+      <a href="#" class="btn">Ro'yxatdan o'tish</a>
+    </div>
+  </div>
+</header>
+
+<div class="page">
+
+  <!-- ======================= HERO ======================= -->
+  <section class="container hero">
+    <nav class="breadcrumb">
+      <a href="#">Bosh sahifa /</a>
+      <a href="#">Yo'nalishlar /</a>
+      <span class="current">Grafik dizayn</span>
+    </nav>
+
+    <div class="hero-grid">
+      <div>
+        <h1 class="h1">Zamonaviy buxgalteriya hisob kursi orqali buxgalteriya kasbini o'rganing</h1>
+        <p class="lead">Biz sizga yuqori darajadagi talabga ega bo'lgan buxgalteriya hisobi kursini taqdim etamiz bunda siz, zamonaviy buxgalteriya hisobi va 1C ni to'liq o'zlashtirish, mehnat haqini hisoblash, asosiy va aylanma vositalar hisobi, moliyaviy natijalar hisob va h.klarni o'rganib chiqasiz. buxgalteriya kasbini kuchli mentorlardan o'rganing va shu kasbni kuchli mutahasisiga aylaning</p>
+      </div>
+
+      <aside class="promo">
+        <span class="promo-badge">15-yanvargacha kurslarga yoziling va bonuslarni qo'lga kiriting</span>
+        <div class="promo-body">
+          <div class="promo-duration">7 oy</div>
+          <div class="promo-price">4 550 000 UZS</div>
+          <div class="promo-note">evaziga barchasini o'rganing</div>
+        </div>
+      </aside>
+    </div>
+
+  <!-- ======================= LEARN (checklist) ======================= -->
+  <section class="learn">
+    <h2 class="h2">Kursda nimalarni o'rganasiz?</h2>
+    <ul class="checklist">
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg>
+        Pul mablag'lari va ularni ekvivalentlari hisobi
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg>
+        Mehnat haqini hisoblash
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg>
+        Asosiy va aylanma vositalar hisobi
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg>
+        Ishlab chiqarish harajatlari hisobi va tannarx kalkulyatsiyasi
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg>
+        Schetlar rejasi (buxgalteriya o'tkazmalari) bilan ishlash
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg>
+        Moliyaviy natijalar hisobi
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg>
+        Soliqlar va ularning turkumlanishi
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg>
+        Soliq hisobotlarini to'ldirish (my.soliq.uz platformasida) va jo'natish tartibi
+      </li>
+    </ul>
+
+    <div class="chips">
+      <div class="chip">
+        <small>Darslar vaqti</small>
+        <b>Haftada 3 kun 3 soat</b>
+      </div>
+      <div class="chip">
+        <small>Kafolat</small>
+        <b>Mahsus sertifikat</b>
+      </div>
+    </div>
+  </section>
+  </section>
+
+  <!-- ======================= EXPECT (features) ======================= -->
+  <section class="container expect">
+    <h2 class="h2">Kursda sizni nima kutmoqda</h2>
+    <div class="features">
+
+      <article class="feature">
+        <svg class="ill" viewBox="0 0 300 150" fill="none">
+          <rect x="34" y="118" width="232" height="6" rx="3" fill="#DCE8F8"/>
+          <rect x="58" y="58" width="88" height="60" rx="8" fill="#E8F0FC"/>
+          <rect x="70" y="70" width="64" height="36" rx="5" fill="#BFD8F7"/>
+          <rect x="78" y="80" width="34" height="4" rx="2" fill="#1E6BDD"/>
+          <rect x="78" y="90" width="48" height="4" rx="2" fill="#8DB3E8"/>
+          <circle cx="196" cy="52" r="20" fill="#1E6BDD"/>
+          <path d="M162 118c0-19 15-34 34-34s34 15 34 34" fill="#BFD8F7"/>
+          <rect x="150" y="60" width="92" height="10" rx="5" fill="#8DB3E8"/>
+          <rect x="150" y="80" width="70" height="10" rx="5" fill="#DCE8F8"/>
+        </svg>
+        <h3>Strukturaviy nazariya</h3>
+        <p>Har bir bo'limning boshida siz nazariyani o'rganasiz - matnli materiallar, skrinshotlar va mavzu bo'yicha maqolalar</p>
+      </article>
+
+      <article class="feature">
+        <svg class="ill" viewBox="0 0 300 150" fill="none">
+          <rect x="60" y="24" width="180" height="102" rx="12" fill="#E8F0FC"/>
+          <rect x="80" y="44" width="60" height="8" rx="4" fill="#1E6BDD"/>
+          <rect x="80" y="62" width="110" height="8" rx="4" fill="#8DB3E8"/>
+          <rect x="80" y="80" width="88" height="8" rx="4" fill="#BFD8F7"/>
+          <rect x="80" y="98" width="130" height="8" rx="4" fill="#DCE8F8"/>
+          <circle cx="204" cy="98" r="18" fill="#1E6BDD"/>
+          <path d="M197 98h14M204 91v14" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <h3>Algoritm</h3>
+        <p>Nazariy jihatdan va amaliyot jihatdan to'liq o'zlashtirilgandan so'ng siz algoritmlarni to'liq ishlab o'rganasiz</p>
+      </article>
+
+      <article class="feature">
+        <svg class="ill" viewBox="0 0 300 150" fill="none">
+          <rect x="40" y="40" width="120" height="78" rx="10" fill="#E8F0FC"/>
+          <rect x="54" y="56" width="92" height="7" rx="3.5" fill="#1E6BDD"/>
+          <rect x="54" y="72" width="66" height="7" rx="3.5" fill="#8DB3E8"/>
+          <rect x="54" y="88" width="80" height="7" rx="3.5" fill="#BFD8F7"/>
+          <circle cx="206" cy="56" r="18" fill="#BFD8F7"/>
+          <path d="M176 118c0-17 13-30 30-30s30 13 30 30" fill="#1E6BDD"/>
+          <rect x="186" y="86" width="40" height="8" rx="4" fill="#8DB3E8"/>
+        </svg>
+        <h3>Amaliyot</h3>
+        <p>Nazariyani o'rganganingizdan so'ng, siz uy vazifasini bajarasiz, unda siz loyihangiz ustida ishlaysiz va tajriba orttirasiz</p>
+      </article>
+
+      <article class="feature">
+        <svg class="ill" viewBox="0 0 300 150" fill="none">
+          <rect x="46" y="30" width="176" height="96" rx="12" fill="#E8F0FC"/>
+          <rect x="64" y="50" width="70" height="8" rx="4" fill="#8DB3E8"/>
+          <rect x="64" y="68" width="110" height="8" rx="4" fill="#BFD8F7"/>
+          <rect x="64" y="86" width="52" height="8" rx="4" fill="#DCE8F8"/>
+          <circle cx="200" cy="96" r="26" fill="#fff" stroke="#1E6BDD" stroke-width="5"/>
+          <path d="m219 116 18 18" stroke="#1E6BDD" stroke-width="7" stroke-linecap="round"/>
+          <path d="m190 96 7 7 14-15" stroke="#1E6BDD" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3>Kodni tekshirish</h3>
+        <p>har bir topshiriqdan so'ng, sizning shaxsiy murabbiyingiz ish isfatini tekshiradi, tajriba almashadi va o'rgatadi</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ======================= AUDIENCE ======================= -->
+  <section class="container audience">
+    <h2 class="h2">Bu kurs kimlar uchun?</h2>
+    <div class="cards3">
+      <article class="aud-card">
+        <h3>Frilancer bo'lib ishlashni xoxlaganlar uchun</h3>
+        <p>Siz bu kursimizda bemalol masofadan ishlang va o'zingiz uchun ishlang va dizaynda barchani hayratlantiring</p>
+      </article>
+      <article class="aud-card">
+        <h3>Doimiy ish o'rniga ega bo'lishni xoxlovchilar uchun</h3>
+        <p>Siz o'z tajribangizni oshirishni maqsad qilgan bo'lsangiz bu kurs aynan siz uchun, ha to'gri eshitdingiz siz uchun</p>
+      </article>
+      <article class="aud-card">
+        <h3>Web dasturlashni 0dan boshlaganlar uchun</h3>
+        <p>Web dasturlashni 0 dan pro darajagacha chiqishingizga bu kurs judayam katta yordam beradi.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ======================= RESULT BOX ======================= -->
+  <section class="container result-box">
+    <div class="result-left">
+      <h2>Natija</h2>
+      <h3>Lorem ipsum dolor sit amet consec amet dolor sit colo</h3>
+      <p>Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor sit amet consectetur Lorem ipsum.</p>
+      <div class="result-btns">
+        <a href="#" class="btn btn--solid">Ro'yxatdan o'tish</a>
+        <a href="#" class="btn">Videoni ko'rish</a>
+      </div>
+    </div>
+    <div class="gallery">
+      <div class="ph g1"></div>
+      <div class="ph g2"></div>
+      <div class="ph g4"></div>
+      <div class="ph g3"></div>
+      <div class="ph g5"></div>
+      <div class="ph g2"></div>
+    </div>
+  </section>
+
+  <!-- ======================= CERTIFICATE ======================= -->
+  <section class="container certificate">
+    <div class="cert">
+      <div class="cert-inner">
+        <div class="cert-top">
+          <span class="cert-brand">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>
+            EduLife
+          </span>
+          <small>CERTIFICATE</small>
+        </div>
+        <div class="cert-title">SERTIFIKAT</div>
+        <div class="cert-sub">Ushbu sertifikat kursni muvaffaqiyatli tamomlaganlik uchun beriladi</div>
+        <div class="cert-name">Ism Familiya</div>
+        <div class="cert-foot">
+          <span>Direktor</span>
+          <span>Toshkent, 2021</span>
+        </div>
+      </div>
+      <div class="cert-seal">MAXSUS<br>SERTIFIKAT</div>
+    </div>
+    <div class="cert-text">
+      <h3>Kursni tugatgandan so'ng UMDSOFT va IT Park tomonidan maxsus sertifikat beriladi</h3>
+      <p class="note">*Bu Sertifikat ta'lim to'g'risidagi hujjat emas. Bu dasturlashni qay darajada bilishingizni anglatuvchi ma'lumotnoma.</p>
+    </div>
+  </section>
+
+  <!-- ======================= TESTIMONIALS ======================= -->
+  <section class="container feedback">
+    <div class="sec-head">
+      <h2 class="h2">O'quvchilar fikri</h2>
+      <div class="arrows">
+        <button class="arrow" aria-label="Oldingi">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button class="arrow" aria-label="Keyingi">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="tcards">
+      <article class="t-card">
+        <div class="t-avatar">F</div>
+        <div class="stars">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg>
+        </div>
+        <p>Ismim Farrux UI/UX Web designerman 8yildan beri bu sohada ishlab o'sib kelybman. Maqsadim Siz azizlarimni pro darajaga chiqarishni maqsad qilganman</p>
+      </article>
+      <article class="t-card">
+        <div class="t-avatar">F</div>
+        <div class="stars">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg>
+        </div>
+        <p>Ismim Farrux UI/UX Web designerman 8yildan beri bu sohada ishlab o'sib kelybman. Maqsadim Siz azizlarimni pro darajaga chiqarishni maqsad qilganman</p>
+      </article>
+      <article class="t-card">
+        <div class="t-avatar">F</div>
+        <div class="stars">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg>
+        </div>
+        <p>Ismim Farrux UI/UX Web designerman 8yildan beri bu sohada ishlab o'sib kelybman. Maqsadim Siz azizlarimni pro darajaga chiqarishni maqsad qilganman</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ======================= SUPPORT ======================= -->
+  <section class="container support">
+    <div class="sec-head">
+      <h2 class="h2">Kelajagingiz uchun qayg'uramiz</h2>
+      <div class="arrows">
+        <button class="arrow" aria-label="Oldingi">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button class="arrow" aria-label="Keyingi">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="scards">
+      <article class="s-card">
+        <div class="s-top">
+          <span class="ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </span>
+          <h3>Suhbat qurish</h3>
+        </div>
+        <p>Siz sinfdoshlaringiz bilan doimiy aloqada bo'lishingiz va sizni qiziqtirgan savollarni berishingiz mumkin bo'ladi.</p>
+      </article>
+      <article class="s-card">
+        <div class="s-top">
+          <span class="ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+          </span>
+          <h3>Kurator</h3>
+        </div>
+        <p>shaxsiy kabinetingizda qulay bo'lasiz, doimo aloqada bo'lish va savollarga javobni tezda topishga yordam beradi.</p>
+      </article>
+      <article class="s-card">
+        <div class="s-top">
+          <span class="ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.4 8.4 0 0 1-4-.9L3 21l2-5a8.4 8.4 0 0 1-1-4 8.4 8.4 0 0 1 8.4-8.4h.6A8.5 8.5 0 0 1 21 11.5Z"/></svg>
+          </span>
+          <h3>Talaba ustozi</h3>
+        </div>
+        <p>O'qish jarayonida sizga uy vazifasini bajarishda yordam va yordam kerak bo'lishi mumkin. Sizga Talabalar ustozlik qiladi</p>
+      </article>
+      <article class="s-card">
+        <div class="s-top">
+          <span class="ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m16 11 2 2 4-4"/></svg>
+          </span>
+          <h3>O'qituvchilar</h3>
+        </div>
+        <p>O'quv dasturining 70% vebinarlardan iborat: siz savollar berasiz va loyihalaringiz bo'yicha fikr-mulohaza olasiz.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ======================= VIDEO ======================= -->
+  <section class="container video-box">
+    <div class="video-text">
+      <h2>Kurs haqida batafsil bilib oling va ohirigacha ko'ring</h2>
+      <p>Ushbu videoda kurs haqida batafsil bilib olishingiz mumkin. kursda nimalar o'rgatilishi haqida bilib oling</p>
+      <a href="#" class="btn btn--solid">Ro'yxatdan o'tish</a>
+    </div>
+    <div class="yt">
+      <div class="yt-thumb">
+        <span class="yt-actions">
+          <span>🕓</span>
+          <span>↗</span>
+        </span>
+        <button class="yt-play" aria-label="Ijro etish">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+      </div>
+      <div class="yt-bar">
+        <div class="yt-avatar"></div>
+        <div class="yt-lines"><span></span><span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= PRICE ======================= -->
+  <section class="price">
+    <div class="container">
+      <div class="price-head">
+        <h2 class="h2">Kurs narxi</h2>
+        <p class="price-label">To'lov usullari</p>
+      </div>
+      <div class="price-grid">
+        <div class="p-card">
+          <span class="pill">950 000 UZS</span>
+          <div class="big">950 000 UZS / oyiga</div>
+          <div class="total">Jami: 2 000 000 UZS</div>
+        </div>
+        <div class="p-card opt">
+          <span class="tick">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>
+          </span>
+          Kursni to'liq narxini to'lash (10%)
+        </div>
+        <div class="p-card opt">
+          <span class="tick">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>
+          </span>
+          Kursni bo'lib to'lash (30%)
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= FOOTER ======================= -->
+  <footer class="container foot">
+    <div class="foot-grid">
+      <div>
+        <a href="#" class="foot-logo">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>
+          EduLife
+        </a>
+        <div class="socials">
+          <a href="#" class="social" aria-label="YouTube">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.4-.4-5a2.8 2.8 0 0 0-2-2C18.7 4.5 12 4.5 12 4.5s-6.7 0-8.6.5a2.8 2.8 0 0 0-2 2C1 8.6 1 12 1 12s0 3.4.4 5a2.8 2.8 0 0 0 2 2c1.9.5 8.6.5 8.6.5s6.7 0 8.6-.5a2.8 2.8 0 0 0 2-2c.4-1.6.4-5 .4-5ZM10 15.5v-7l6 3.5-6 3.5Z"/></svg>
+          </a>
+          <a href="#" class="social" aria-label="Facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.3-1.5 1.6-1.5h1.7V3.6A22 22 0 0 0 14.3 3c-2.4 0-4.1 1.5-4.1 4.3v2.6H7.5V13h2.7v8h3.3Z"/></svg>
+          </a>
+          <a href="#" class="social" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Sahifalar</h4>
+        <ul>
+          <li><a href="#">Ish topish</a></li>
+          <li><a href="#">O'quv dasturlar</a></li>
+          <li><a href="#">Tadbirlar</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="contact">
+          <b>+998-00-123-45-67</b>
+          <small>Tashkent</small>
+        </div>
+      </div>
+
+      <div>
+        <div class="contact">
+          <b>+998-00-000-00-00</b>
+          <small>Call center</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span>© Edulife, 2021</span>
+      <span>Barcha huquqlardan himoyalangan</span>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
